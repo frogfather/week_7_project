@@ -3,6 +3,8 @@ package com.example.user.myapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -45,6 +47,7 @@ public class Runner extends AppCompatActivity{
         dealerPlaying.setVisibility(View.VISIBLE);
         dealerPlaying.setChecked(false);
 
+
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
@@ -65,7 +68,33 @@ public class Runner extends AppCompatActivity{
 
         });
 
-        inputBox.addTextChangedListener();
+        inputBox.addTextChangedListener(new TextWatcher(){
+            String textinput;
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                textinput = s.toString();
+                textinput.trim();
+                if (textinput.isEmpty()){
+                    enterButton.setEnabled(false);
+                }
+                else
+                {
+                    enterButton.setEnabled(true);
+                }
+            }
+        });
 
 
 
