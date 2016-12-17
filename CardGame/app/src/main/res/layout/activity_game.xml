@@ -108,22 +108,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_game"
-            android:id="@+id/button"
+            android:id="@+id/game_button"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="false"
             android:layout_alignRight="@+id/dealerPlay"
             android:layout_alignEnd="@+id/dealerPlay"
             android:layout_alignParentRight="true"
             android:textAlignment="center" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button2"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/button"
-            android:layout_toStartOf="@+id/button" />
 
     </RelativeLayout>
 

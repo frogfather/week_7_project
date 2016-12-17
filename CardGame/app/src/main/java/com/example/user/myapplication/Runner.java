@@ -25,6 +25,7 @@ public class Runner extends AppCompatActivity{
     private Dealer dealer;
     private EditText inputBox;
     private Button enterButton;
+    private Button newGameButton;
     private String dealerName;
     private CheckBox dealerPlaying;
     private ListView playerList;
@@ -37,6 +38,7 @@ public class Runner extends AppCompatActivity{
         setContentView(R.layout.activity_game);
         inputBox = (EditText)findViewById(R.id.input_box);
         enterButton = (Button)findViewById(R.id.enterButton);
+        newGameButton = (Button)findViewById(R.id.game_button);
         dealerPlaying = (CheckBox)findViewById(R.id.dealerPlay);
         playerList = (ListView)findViewById(R.id.playerlist);
         playerNameLabel = (TextView)findViewById(R.id.player_name);
@@ -44,9 +46,10 @@ public class Runner extends AppCompatActivity{
         players = new ArrayList<Player>();
         adapter = new PlayerAdaptor(this,R.id.playerlist, players);
         playerList.setAdapter(adapter);
+        enterButton.setEnabled(false);
         dealerPlaying.setVisibility(View.VISIBLE);
         dealerPlaying.setChecked(false);
-
+        newGameButton.setEnabled(false);
 
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,14 +58,24 @@ public class Runner extends AppCompatActivity{
                     setDealer(inputBox.getText().toString());
                     Log.d("Card game", "Dealer set");
                     playerNameLabel.setText(getResources().getString(R.string.player_name));
-                    inputBox.setText("");
                     dealerPlaying.setVisibility(View.INVISIBLE);
                 }
                 else {
                     //set the players, min 2 max 4
-                    Player player = new Player(inputBox.getText().toString());
-                    addPlayer(player);
+                    if (getPlayerCount() < 4) {
+                        Player player = new Player(inputBox.getText().toString());
+                        addPlayer(player);
+                        if (getPlayerCount() > 2) {
+                            newGameButton.setEnabled(true);
+                        } else {
+                            newGameButton.setEnabled(true);
+                        }
+                    }
+                else {
+                    //toast to say max players reached?
+                    }
                 }
+                inputBox.setText("");
                 playerList.setAdapter(adapter);
             }
 
