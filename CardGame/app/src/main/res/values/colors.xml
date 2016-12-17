@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#2F41A5</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#4359a0</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="RED">#f10202</color>
+    <color name="card_game_list_view_text">#bbffbb</color>
+    <color name="card_game_list_view_background">#144628</color>
+</resources>
