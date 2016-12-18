@@ -16,6 +16,14 @@
                 </intent-filter>
             </activity>
 
+            <activity
+                android:name=".Game"
+                android:parentActivityName=".Runner"
+                android:label="@string/set_up">
+                </activity>
+
+
+
     </application>
 
 </manifest>

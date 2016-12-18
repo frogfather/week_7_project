@@ -49,8 +49,6 @@
             android:id="@+id/enterButton"
             android:layout_weight="1"
             android:nestedScrollingEnabled="true"
-            android:gravity="bottom"
-            android:layout_gravity="bottom"
             android:layout_alignParentStart="false"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="false"

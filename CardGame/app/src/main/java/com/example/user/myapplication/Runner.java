@@ -1,6 +1,7 @@
 package com.example.user.myapplication;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -73,6 +75,7 @@ public class Runner extends AppCompatActivity{
                     }
                 else {
                     //toast to say max players reached?
+
                     }
                 }
                 inputBox.setText("");
@@ -80,6 +83,22 @@ public class Runner extends AppCompatActivity{
             }
 
         });
+
+        newGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            //show a new view
+
+                Log.d("Card game", "New game button clicked");
+                //InputStream input = getResources().openRawResource(R.raw.answers);
+
+                Intent intent = new Intent(Runner.this, Game.class);
+                startActivity(intent);
+
+
+            }
+        });
+
 
         inputBox.addTextChangedListener(new TextWatcher(){
             String textinput;
@@ -99,7 +118,7 @@ public class Runner extends AppCompatActivity{
             public void afterTextChanged(Editable s) {
                 textinput = s.toString();
                 textinput.trim();
-                if (textinput.isEmpty()){
+                if (textinput.isEmpty() || getPlayerCount()>3){
                     enterButton.setEnabled(false);
                 }
                 else
@@ -120,6 +139,10 @@ public class Runner extends AppCompatActivity{
         if (dealerPlaying.isChecked()){
             addPlayer(dealer);
         }
+    }
+
+    public Dealer getDealer(){
+        return dealer;
     }
 
     public void addPlayer(Player player){

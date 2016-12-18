@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Blackjack</string>
+    <string name="set_up">Blackjack setup</string>
     <string name="dealer_hint">Enter the name of the dealer here</string>
     <string name="dealer_prompt">Enter the name of the dealer</string>
     <string name="dealer_playing">Dealer playing</string>

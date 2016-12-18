@@ -9,9 +9,13 @@ import android.widget.TextView;
 import java.util.*;
 
 
-public class Game{
+public class Game extends AppCompatActivity{
 
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.game_activity);
+    }
 
 //  public int getScore(Player player){
 //    int sum = 0;
