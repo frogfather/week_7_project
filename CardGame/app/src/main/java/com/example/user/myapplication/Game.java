@@ -21,7 +21,7 @@ public class Game {
     }
 
     public Player getPlayerByPosition(int position){
-        return this.players.get(position);
+            return this.players.get(position);
     }
 
 
@@ -68,19 +68,12 @@ public ArrayList<Player> getPlayers(){
   }
 
 
-    public void nextTurn(){
-
-    }
-
     public void deal(){
-        // initial deal
-        for (int round = 0; round < 2; round++) {
             for (int i = 0; i < players.size(); i++) {
-                //deal two cards
                 dealer.dealCard(getPlayerByPosition(i));
             }
-        }
     }
+
 //  public void play(){
 //    // for (Type variable: arraylist) {do something}
 //  Boolean finished = false;

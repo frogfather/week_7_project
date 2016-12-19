@@ -25,6 +25,7 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
     private Deck deck;
     private Game game;
     private int turn;
+    private boolean gameOver;
 
     TextView p1Cap;
     TextView p2Cap;
@@ -36,6 +37,10 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
     TextView score_3;
     TextView score_4;
 
+    RelativeLayout player_1;
+    RelativeLayout player_2;
+    RelativeLayout player_3;
+    RelativeLayout player_4;
     RelativeLayout main_frame;
 
 
@@ -55,28 +60,25 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
         p4Cap.setOnClickListener(this);
 
 
-
+        //these score captions are temporary
         score_1 = (TextView)findViewById(R.id.score_1);
         score_2 = (TextView)findViewById(R.id.score_2);
         score_3 = (TextView)findViewById(R.id.score_3);
         score_4 = (TextView)findViewById(R.id.score_4);
 
+
         main_frame = (RelativeLayout)findViewById(R.id.main_layout);
+        player_1 = (RelativeLayout)findViewById(R.id.player_1);
+        player_2 = (RelativeLayout)findViewById(R.id.player_2);
+        player_3 = (RelativeLayout)findViewById(R.id.player_3);
+        player_4 = (RelativeLayout)findViewById(R.id.player_4);
 
-        //this is temporary!
-        for (int i=0; i< main_frame.getChildCount();i++){
-            View v = main_frame.getChildAt(i);
-            if (v instanceof RelativeLayout){
-              //go through its children
-               RelativeLayout rl = ((RelativeLayout) v);
-                for (int p = 0; p < rl.getChildCount();p++){
-                    View w = ((RelativeLayout) v).getChildAt(p);
-                    Log.d("Card Game","Child of "+v.toString()+" = "+w.getTag());
-                }
-            }
-        }
-        // end of temporary code
+        player_1.setOnClickListener(this);
+        player_2.setOnClickListener(this);
+        player_3.setOnClickListener(this);
+        player_4.setOnClickListener(this);
 
+        //get stuff passed from the first activity
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         String dealerName = extras.getString("dealer_name");
@@ -99,10 +101,13 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
            }
         }
 
-
+        //start the game
         game = new Game(players,dealer);
+        gameOver = false;
         setPlayerCaptions();
         game.deal();
+        game.deal();
+        //players get 2 cards initially
         for (int i = 0; i < game.getPlayerCount();i++){
             Log.d("Card Game",game.getPlayerNameByPosition(i)+" has a score of "+game.getScore(game.getPlayerByPosition(i)));
         }
@@ -112,32 +117,60 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        // default method for handling onClick Events..
         //find which TextView has clicked and set that player to stick
         int playerId = -1;
         switch (v.getId()) {
             case R.id.cap_player_1:
                 playerId = 0;
-            break;
+                break;
 
             case R.id.cap_player_2:
                 playerId = 1;
-
-            break;
+                break;
 
             case R.id.cap_player_3:
                 playerId = 2;
-            break;
+                break;
 
             case R.id.cap_player_4:
                 playerId = 3;
-            break;
+                break;
 
+            case R.id.player_1:
+                playerId = 4;
+                break;
+            case R.id.player_2:
+                playerId = 5;
+                break;
+            case R.id.player_3:
+                playerId = 6;
+                break;
+            case R.id.player_4:
+                playerId = 7;
+                break;
         };
-        if ((playerId == turn) && (playerId < game.getPlayerCount())) {
-            Player player = game.getPlayerByPosition(playerId);
-            player.setPlayerStick(true);
-            nextTurn();
+
+
+        if (playerId < game.getPlayerCount()){
+            //a caption has been clicked so we want to stick
+            if (playerId == turn){
+                Player player = game.getPlayerByPosition(playerId);
+                player.setPlayerStick(true);
+                getNextPlayer();
+            }
+        }
+        else
+        {
+            playerId -= 4;
+            if (playerId < game.getPlayerCount()){
+                if (playerId == turn){
+                    Player player = game.getPlayerByPosition(playerId);
+                    dealer.dealCard(player);
+                    setScores();
+                    getNextPlayer();
+                }
+            }
+
         }
 
 
@@ -154,7 +187,7 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
             openBracket = "";
             closeBracket = "";
             player = game.getPlayerByPosition(i);
-            if (player.getPlayerStick() == true){
+            if (player.getPlayerStick()){
                 openBracket = "(";
                 closeBracket = ")";
             }
@@ -192,18 +225,27 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
 
 
     public void setScores(){
-            score_1.setText(String.valueOf(game.getScore(game.getPlayerByPosition(0))));
-            score_2.setText(String.valueOf(game.getScore(game.getPlayerByPosition(1))));
-            if (game.getPlayerCount() > 2){
-                score_3.setText(String.valueOf(game.getScore(game.getPlayerByPosition(2))));
+        Player player;
+        for (int i = 0; i < game.getPlayerCount(); i++){
+            player = game.getPlayerByPosition(i);
+            int score = game.getScore(player);
+            String captionToSet = String.valueOf(score);
+            if (score > 21){
+                player.setPlayerBust(true);
+                Log.d("Card game", player.getPlayerName()+" is bust");
             }
-        if (game.getPlayerCount() > 3){
-            score_4.setText(String.valueOf(game.getScore(game.getPlayerByPosition(3))));
+
+            String controlToFind = "p"+String.valueOf(i+1)+"score";
+            Object thisControl = getComponentByTag(controlToFind);
+            if (thisControl != null && thisControl instanceof TextView){
+                ((TextView) thisControl).setText(captionToSet);
+                }
+
         }
 
     }
 
-    public void nextTurn(){
+    public void getNextPlayer(){
         Boolean done = false;
         Boolean playerFound= false;
         while (!done){
@@ -214,8 +256,18 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
                 playerFound = true;
             }
             done = (game.getActivePlayers() == 0 || playerFound);
+        if (!playerFound){
+                Log.d("Card Game", "Game is finished");
+                setPlayerCaptions();
+                gameOver = true;
         }
-     Log.d("Card Game", "Active Player is "+ game.getPlayerNameByPosition(turn));
+        else
+            {
+                Log.d("Card Game", "Active Players: "+game.getActivePlayers());
+                Log.d("Card Game", "Active Player is "+ game.getPlayerNameByPosition(turn));
+                setPlayerCaptions();
+            }
+        }
     }
 
 
