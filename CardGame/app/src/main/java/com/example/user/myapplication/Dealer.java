@@ -1,4 +1,6 @@
 package com.example.user.myapplication;
+import android.util.Log;
+
 import java.util.*;
 
 public class Dealer extends Player{
@@ -14,7 +16,9 @@ public void dealCard(Player player){
   Random rand = new Random();
   int i = rand.nextInt(deck.getCardCount());
   Card card = deck.getCard(i);
-  player.takeCard(card);
+    Log.d("Card Game", "Player "+player.getPlayerName()+" was dealt "+card.getName()+" of "+card.getSuit());
+
+    player.takeCard(card);
 }
 
 

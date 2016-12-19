@@ -1,43 +1,86 @@
 package com.example.user.myapplication;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.util.Log;
 import android.widget.TextView;
-
 import java.util.*;
 
 
-public class Game extends AppCompatActivity{
+public class Game {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_activity);
+    private ArrayList<Player> players;
+    private Dealer dealer;
+
+
+
+    public String getPlayerNameByPosition(int position){
+        return this.players.get(position).getPlayerName();
     }
 
-//  public int getScore(Player player){
-//    int sum = 0;
-//    boolean haveAce = false;
-//    ArrayList<Card> hand = player.getHand();
-//    if (player.getHandSize() > 0){
-//      for (Card card : hand) {
-//        int cardValue = card.getValue();
-//        if (cardValue > 10) {cardValue = 10;}
-//        if (cardValue == 1){haveAce = true;}
-//        sum += cardValue;
-//        //if we have aces we need to decide if we can make them
-//        //value 11.
-//        }
-//      if ((sum < 12) && (haveAce == true)){
-//        sum += 10;
-//        }
-//
-//      }
-//    return sum;
-//  }
+    public Player getPlayerByPosition(int position){
+        return this.players.get(position);
+    }
 
+
+public Game(ArrayList<Player> players, Dealer dealer){
+    this.players = players;
+    this.dealer = dealer;
+
+}
+
+public int getActivePlayers(){
+    int active = 0;
+    for (int i = 0; i < getPlayerCount(); i++){
+        Player player = getPlayerByPosition(i);
+        if (player.getPlayerStick() == false && player.getPlayerBust() == false){
+            active += 1;
+        }
+    }
+    return active;
+}
+
+public ArrayList<Player> getPlayers(){
+    return this.players;
+}
+
+    public int getScore(Player player){
+    int sum = 0;
+    boolean haveAce = false;
+    ArrayList<Card> hand = player.getHand();
+    if (player.getHandSize() > 0){
+      for (Card card : hand) {
+        int cardValue = card.getValue();
+        if (cardValue > 10) {cardValue = 10;}
+        if (cardValue == 1){haveAce = true;}
+        sum += cardValue;
+        //if we have aces we need to decide if we can make them
+        //value 11.
+        }
+      if ((sum < 12) && (haveAce == true)){
+        sum += 10;
+        }
+
+      }
+    return sum;
+  }
+
+
+    public void nextTurn(){
+
+    }
+
+    public void deal(){
+        // initial deal
+        for (int round = 0; round < 2; round++) {
+            for (int i = 0; i < players.size(); i++) {
+                //deal two cards
+                dealer.dealCard(getPlayerByPosition(i));
+            }
+        }
+    }
 //  public void play(){
 //    // for (Type variable: arraylist) {do something}
 //  Boolean finished = false;
@@ -102,21 +145,30 @@ public class Game extends AppCompatActivity{
 //  }
 //}
 //
-//public Player getFinalScores(){
-//  int highScore = 0;
-//  Player winner = null;
-//  highScore = 0;
-//  for (Player player: players){
-//    if (!player.getPlayerBust()){
-//      int playerScore = getScore(player);
-//      if (playerScore > highScore) {
-//        highScore = playerScore;
-//        winner = player;
-//        }
-//      }
-//    }
-//  return winner;
-//  }
+
+    public int getPlayerCount(){
+        return this.players.size();
+    };
+
+
+
+public Player getFinalScores(){
+  int highScore = 0;
+  Player winner = null;
+  highScore = 0;
+  for (Player player: players){
+    if (!player.getPlayerBust()){
+      int playerScore = getScore(player);
+      if (playerScore > highScore) {
+        highScore = playerScore;
+        winner = player;
+        }
+      }
+    }
+  return winner;
+  }
+
+
 
 };
 

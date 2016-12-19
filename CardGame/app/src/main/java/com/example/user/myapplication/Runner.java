@@ -19,12 +19,14 @@ import android.widget.TextView;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Runner extends AppCompatActivity{
-    private Dealable deck;
+    private Deck deck;
     private ArrayList<Player> players;
     private Dealer dealer;
+    private Boolean dealerIsPlaying;
     private EditText inputBox;
     private Button enterButton;
     private Button newGameButton;
@@ -33,6 +35,7 @@ public class Runner extends AppCompatActivity{
     private ListView playerList;
     private PlayerAdaptor adapter;
     private TextView playerNameLabel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,11 +93,19 @@ public class Runner extends AppCompatActivity{
             //show a new view
 
                 Log.d("Card game", "New game button clicked");
-                //InputStream input = getResources().openRawResource(R.raw.answers);
 
-                Intent intent = new Intent(Runner.this, Game.class);
+                Intent intent = new Intent(Runner.this, PlayGame.class);
+                //now add the extras
+                intent.putExtra("dealer_name",dealer.getPlayerName());
+                intent.putExtra("dealer_playing",dealerIsPlaying);
+                for (int i=0; i< players.size();i++){
+                    String playerName = getPlayerByPosition(i);
+                    if (playerName != dealer.getPlayerName() ){
+                        intent.putExtra("player"+String.valueOf(i),playerName);
+                    }
+                }
+
                 startActivity(intent);
-
 
             }
         });
@@ -116,8 +127,7 @@ public class Runner extends AppCompatActivity{
 
             @Override
             public void afterTextChanged(Editable s) {
-                textinput = s.toString();
-                textinput.trim();
+                textinput = s.toString().trim();
                 if (textinput.isEmpty() || getPlayerCount()>3){
                     enterButton.setEnabled(false);
                 }
@@ -136,6 +146,7 @@ public class Runner extends AppCompatActivity{
         dealerName = name;
         dealer = new Dealer(dealerName,deck);
         Log.d("Card game","dealer set");
+        dealerIsPlaying = dealerPlaying.isChecked();
         if (dealerPlaying.isChecked()){
             addPlayer(dealer);
         }
@@ -153,6 +164,9 @@ public class Runner extends AppCompatActivity{
         return this.players.size();
     };
 
+    public String getPlayerByPosition(int position){
+        return this.players.get(position).getPlayerName();
+    }
 };
 
 

@@ -1,4 +1,6 @@
 package com.example.user.myapplication;
+import android.util.Log;
+
 import java.util.*;
 
 public class Player {
@@ -57,7 +59,9 @@ public boolean getPlayerBust(){
 }
 
 public void setPlayerStick(Boolean value){
-  this.stick = value;
+
+    this.stick = value;
+    Log.d("Card Game ","Player "+getPlayerName()+" has stuck");
 }
 
 public void setPlayerBust(Boolean value){
