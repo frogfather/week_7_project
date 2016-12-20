@@ -297,14 +297,23 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
     public void getNextPlayer(){
         Boolean done = false;
         Boolean playerFound= false;
-        while (!done){
-            turn +=1;
-            if (turn == game.getPlayerCount()){ turn = 0;}
+        while (!done) {
+            turn += 1;
+            if (turn == game.getPlayerCount()) {
+                turn = 0;
+            }
             Player player = game.getPlayerByPosition(turn);
-            if (!player.getPlayerStick() && !player.getPlayerBust()){
+            Log.d("Card Game", "Checking if : " + player.getPlayerName() + " can play");
+
+            if (!player.getPlayerStick() && !player.getPlayerBust()) {
+                Log.d("Card Game", "Player found");
                 playerFound = true;
             }
-            done = (game.getActivePlayers() == 0 || playerFound);
+            int active = game.getActivePlayers();
+            Log.d("Card Game", "Active Players: " + active);
+
+            done = ((active == 0) || playerFound);
+        }
         if (!playerFound){
                 Log.d("Card Game", "Game is finished");
                 setPlayerCaptions();
@@ -312,11 +321,10 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
         }
         else
             {
-                Log.d("Card Game", "Active Players: "+game.getActivePlayers());
                 Log.d("Card Game", "Active Player is "+ game.getPlayerNameByPosition(turn));
                 setPlayerCaptions();
             }
-        }
+
     }
 
 

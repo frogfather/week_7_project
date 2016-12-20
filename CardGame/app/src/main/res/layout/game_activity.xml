@@ -17,21 +17,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/p1image_4"
             android:tag="p1_4"
-            android:layout_marginRight="95dp" />
+            android:layout_marginRight="75dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/p1image_3"
             android:tag="p1_3"
-            android:layout_marginRight="65dp" />
+            android:layout_marginRight="50dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/p1image_2"
             android:tag="p1_2"
-            android:layout_marginRight="35dp" />
+            android:layout_marginRight="25dp" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

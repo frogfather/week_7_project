@@ -35,7 +35,7 @@ public int getActivePlayers(){
     int active = 0;
     for (int i = 0; i < getPlayerCount(); i++){
         Player player = getPlayerByPosition(i);
-        if (player.getPlayerStick() == false && player.getPlayerBust() == false){
+        if (!player.getPlayerStick() && !player.getPlayerBust()){
             active += 1;
         }
     }
