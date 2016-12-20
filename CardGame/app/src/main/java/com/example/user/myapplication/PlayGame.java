@@ -156,22 +156,36 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
             if (playerId == turn){
                 Player player = game.getPlayerByPosition(playerId);
                 player.setPlayerStick(true);
-                getNextPlayer();
             }
         }
         else
         {
             playerId -= 4;
             if (playerId < game.getPlayerCount()){
+                //an image has been clicked so we want to twist
                 if (playerId == turn){
                     Player player = game.getPlayerByPosition(playerId);
                     dealer.dealCard(player);
-                    setScores();
-                    getNextPlayer();
                 }
             }
 
         }
+        setScores();
+        getNextPlayer();
+        if (gameOver) {
+            Player winner = game.getFinalScores();
+            if (winner != null){
+            Log.d("Card Game", winner.getPlayerName()+" has won!");
+            //toast to say who has won?
+            }
+            else
+            {
+            //toast to say no winner?
+                Log.d("Card Game", "no winner");
+
+            }
+        }
+
 
 
     }
@@ -243,6 +257,10 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
 
         }
 
+    }
+
+    public void setImage(int player, int cardNumber, String suit, String value){
+        
     }
 
     public void getNextPlayer(){

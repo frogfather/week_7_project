@@ -23,7 +23,6 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/diamond_queen"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="false" />
 
@@ -35,20 +34,17 @@
         android:id="@+id/player_4"
         android:background="@android:color/holo_green_dark"
         android:layout_toLeftOf="@+id/relativeLayout"
-        android:layout_alignTop="@+id/relativeLayout">
+        android:layout_alignTop="@+id/relativeLayout"
+        android:layout_alignParentBottom="true">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:id="@+id/p4image"
             android:tag="p4image"
             android:layout_alignParentBottom="false"
-            android:src="@drawable/diamond_queen"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:layout_above="@+id/cap_player_4"
             android:layout_alignParentTop="true"
-            android:clickable="false"
             android:contentDescription="@string/none"
             android:contextClickable="false" />
     </RelativeLayout>
@@ -59,21 +55,18 @@
         android:id="@+id/player_2"
         android:layout_alignParentRight="true"
         android:background="@android:color/holo_green_dark"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true"
         android:layout_toRightOf="@+id/relativeLayout"
-        android:layout_alignBottom="@+id/relativeLayout">
+        android:layout_alignBottom="@+id/relativeLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:id="@+id/p2image"
             android:tag="p2image"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="false"
-            android:src="@drawable/diamond_queen"
-            android:layout_below="@+id/score_2" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
@@ -83,28 +76,39 @@
         android:id="@+id/player_1"
         android:background="@android:color/holo_green_dark"
         android:layout_above="@+id/relativeLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_alignRight="@+id/relativeLayout"
-        android:layout_alignParentRight="false">
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pimage_4"
+            android:src="@drawable/diamond_7"
+            android:layout_marginRight="95dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p1image_3"
+            android:src="@drawable/club_3"
+            android:layout_marginRight="65dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/p1image_2"
-            android:src="@drawable/heart_king"
-            android:layout_alignTop="@+id/p1image"
-            android:layout_alignBottom="@+id/p1image"
-            android:layout_alignRight="@+id/p1image"
-            android:layout_marginRight="20dp"
-            android:layout_below="@+id/p1image" />
+            android:src="@drawable/diamond_1"
+            android:layout_marginRight="35dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/p1image"
             android:tag="p1image"
-            android:src="@drawable/diamond_queen"
-            android:layout_alignParentRight="true" />
+            android:src="@drawable/heart_10"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentTop="false" />
 
     </RelativeLayout>
 
