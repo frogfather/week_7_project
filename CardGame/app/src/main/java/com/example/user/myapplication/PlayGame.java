@@ -1,5 +1,6 @@
 package com.example.user.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -242,6 +244,8 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
         Player player;
         for (int i = 0; i < game.getPlayerCount(); i++){
             player = game.getPlayerByPosition(i);
+            //we have a player and a player position so we can set the card images too
+            setCardImages(player,i+1);
             int score = game.getScore(player);
             String captionToSet = String.valueOf(score);
             if (score > 21){
@@ -259,8 +263,35 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    public void setImage(int player, int cardNumber, String suit, String value){
-        
+    public void setCardImages(Player player, int position){
+        ArrayList<Card> hand;
+        hand = player.getHand();
+        if (player.getHandSize()>0){
+            //we just show four cards - newest on top
+            int imagenumber = player.getHandSize();
+            if (imagenumber > 4) {imagenumber = 4;}
+            for (Card card : hand){
+            setImage(position,imagenumber,card.getSuit(),card.getValue());
+                imagenumber -=1;
+            }
+        }
+    }
+
+    public void setImage(int player, int cardNumber, SuitType suit, int value){
+        String tagToFind = "p"+String.valueOf(player)+"_"+String.valueOf(cardNumber);
+        Object imageViewToSet = getComponentByTag(tagToFind);
+        Log.d("Card Game", "Object to find "+tagToFind);
+        if (imageViewToSet != null && imageViewToSet instanceof ImageView){
+            Log.d("Card Game", "Object is "+imageViewToSet.toString());
+            // order in suit type is heart, spade, diamond, club
+        String imageToFind = String.valueOf(suit).toLowerCase()+"_"+String.valueOf(value);
+        Log.d("Card Game", "String to find "+imageToFind);
+            Context context = ((ImageView) imageViewToSet).getContext();
+            int id = getResources().getIdentifier(imageToFind,"drawable",context.getPackageName());
+            Log.d("Card Game", "Id returned "+id);
+
+            ((ImageView) imageViewToSet).setImageResource(id);
+        }
     }
 
     public void getNextPlayer(){

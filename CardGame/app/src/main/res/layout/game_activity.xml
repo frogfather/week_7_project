@@ -4,72 +4,6 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_green_dark"
     android:id="@+id/main_layout">
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_green_dark"
-        android:id="@+id/player_3"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_alignParentRight="true"
-        android:layout_alignLeft="@+id/relativeLayout"
-        android:layout_marginLeft="10dp">
-
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/p3image"
-            android:tag="p3image"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="false" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/player_4"
-        android:background="@android:color/holo_green_dark"
-        android:layout_toLeftOf="@+id/relativeLayout"
-        android:layout_alignTop="@+id/relativeLayout"
-        android:layout_alignParentBottom="true">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="190dp"
-            android:id="@+id/p4image"
-            android:tag="p4image"
-            android:layout_alignParentBottom="false"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:contentDescription="@string/none"
-            android:contextClickable="false" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/player_2"
-        android:layout_alignParentRight="true"
-        android:background="@android:color/holo_green_dark"
-        android:layout_toRightOf="@+id/relativeLayout"
-        android:layout_alignBottom="@+id/relativeLayout"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="false">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="190dp"
-            android:id="@+id/p2image"
-            android:tag="p2image"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-
-    </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,34 +15,150 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/pimage_4"
-            android:src="@drawable/diamond_7"
-            android:layout_marginRight="95dp"/>
+            android:id="@+id/p1image_4"
+            android:tag="p1_4"
+            android:layout_marginRight="95dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/p1image_3"
-            android:src="@drawable/club_3"
+            android:tag="p1_3"
             android:layout_marginRight="65dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/p1image_2"
-            android:src="@drawable/diamond_1"
+            android:tag="p1_2"
             android:layout_marginRight="35dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p1image_1"
+            android:tag="p1_1" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_dark"
+        android:id="@+id/player_3"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/p1image"
-            android:tag="p1image"
-            android:src="@drawable/heart_10"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentRight="false"
-            android:layout_alignParentTop="false" />
+            android:id="@+id/p3image4"
+            android:tag="p3_4"
+            android:layout_marginLeft="95dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p3image3"
+            android:tag="p3_3"
+            android:layout_marginLeft="65dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p3image2"
+            android:tag="p3_2"
+            android:layout_marginLeft="30dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/p3image1"
+            android:tag="p3_1" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/player_4"
+        android:background="@android:color/holo_green_dark"
+        android:layout_toLeftOf="@+id/relativeLayout"
+        android:layout_alignTop="@+id/relativeLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="190dp"
+            android:id="@+id/p4image4"
+            android:tag="p4_4"
+            android:layout_marginTop="75dp"
+            android:contentDescription="@string/none"
+            android:layout_alignTop="@+id/p4image1" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="190dp"
+            android:id="@+id/p4image3"
+            android:tag="p4_3"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/none"
+            android:layout_alignTop="@+id/p4image1" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="190dp"
+            android:id="@+id/p4image2"
+            android:tag="p4_2"
+            android:layout_marginTop="25dp"
+            android:contentDescription="@string/none"
+            android:layout_alignTop="@+id/p4image1" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="190dp"
+            android:id="@+id/p4image1"
+            android:tag="p4_1"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/none"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/player_2"
+        android:background="@android:color/holo_green_dark"
+        android:layout_toRightOf="@+id/relativeLayout"
+        android:layout_alignBottom="@+id/relativeLayout"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="190dp"
+            android:id="@+id/p2image4"
+            android:tag="p2_4"
+            android:layout_marginBottom="75dp"
+            android:layout_alignBottom="@+id/p2image1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="190dp"
+            android:id="@+id/p2image3"
+            android:tag="p2_3"
+            android:layout_marginBottom="50dp"
+            android:layout_alignBottom="@+id/p2image1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="190dp"
+            android:id="@+id/p2image2"
+            android:tag="p2_2"
+            android:layout_marginBottom="25dp"
+            android:layout_alignBottom="@+id/p2image1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="190dp"
+            android:id="@+id/p2image1"
+            android:tag="p2_1"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 
@@ -156,8 +206,7 @@
             android:layout_alignParentTop="false"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="false"
-            android:layout_below="@+id/cap_player_1"
-            android:layout_alignParentRight="false" />
+            android:layout_below="@+id/cap_player_1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -167,8 +216,6 @@
             android:id="@+id/cap_player_1"
             android:tag="p1cap"
             android:textStyle="bold"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentRight="false"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -180,7 +227,6 @@
             android:id="@+id/cap_player_3"
             android:tag="p3cap"
             android:textStyle="bold"
-            android:layout_alignParentLeft="false"
             android:layout_above="@+id/score_3"
             android:layout_centerHorizontal="true" />
 
@@ -192,7 +238,6 @@
             android:id="@+id/score_3"
             android:tag="p3score"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="false"
             android:layout_centerVertical="true"
             android:layout_alignRight="@+id/cap_player_3" />
 
@@ -224,5 +269,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp" />
     </RelativeLayout>
+
+
 
 </RelativeLayout>
