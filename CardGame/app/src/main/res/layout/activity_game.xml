@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/background">
+        android:background="@color/card_game_list_view_background">
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,14 +29,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/input_box"
             android:layout_gravity="bottom"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/enterButton"
-            android:layout_above="@+id/enterButton"
             android:inputType="text"
-            android:background="@color/card_game_list_view_background"
+            android:background="@android:color/darker_gray"
             android:textSize="24dp"
-            android:textColor="@color/card_game_list_view_text" />
+            android:textColor="@color/BLACK"
+            android:layout_alignParentEnd="true"
+            android:layout_above="@+id/enterButton"
+            android:layout_toRightOf="@+id/player_name"
+            android:layout_marginLeft="20dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -57,15 +57,13 @@
             android:layout_height="wrap_content"
             android:text="@string/dealer_playing"
             android:id="@+id/dealerPlay"
-            android:layout_above="@+id/enterButton"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/input_box"
-            android:layout_alignParentRight="true"
             android:background="@color/card_game_list_view_background"
             android:textColor="@color/card_game_list_view_text"
-            android:textSize="18dp" />
+            android:textSize="18sp"
+            android:layout_alignParentTop="false"
+            android:layout_alignBottom="@+id/enterButton"
+            android:layout_toRightOf="@+id/enterButton"
+            android:layout_toLeftOf="@+id/game_button" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,14 +71,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/dealer_name"
             android:id="@+id/player_name"
-            android:layout_above="@+id/input_box"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:textColor="@color/card_game_list_view_text"
-            android:textSize="24dp"
-            android:background="@color/card_game_list_view_background" />
+            android:textSize="24sp"
+            android:background="@color/card_game_list_view_background"
+            android:layout_above="@+id/enterButton" />
 
         <ListView
             android:layout_width="wrap_content"
@@ -103,11 +97,7 @@
             android:text="@string/start_game"
             android:id="@+id/game_button"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="false"
-            android:layout_alignRight="@+id/dealerPlay"
-            android:layout_alignEnd="@+id/dealerPlay"
-            android:layout_alignParentRight="true"
-            android:textAlignment="center" />
+            android:layout_alignParentRight="true" />
 
     </RelativeLayout>
 
