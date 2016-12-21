@@ -2,6 +2,7 @@ package com.example.user.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +12,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by user on 18/12/2016.
@@ -121,37 +124,19 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         //find which TextView has clicked and set that player to stick
         int playerId = -1;
-        switch (v.getId()) {
-            case R.id.cap_player_1:
-                playerId = 0;
-                break;
+        HashMap<Integer,Integer> controlClicked = new HashMap<Integer, Integer>();
+        controlClicked.put(R.id.cap_player_1,0);
+        controlClicked.put(R.id.cap_player_2,1);
+        controlClicked.put(R.id.cap_player_3,2);
+        controlClicked.put(R.id.cap_player_4,3);
+        controlClicked.put(R.id.player_1,4);
+        controlClicked.put(R.id.player_2,5);
+        controlClicked.put(R.id.player_3,6);
+        controlClicked.put(R.id.player_4,7);
 
-            case R.id.cap_player_2:
-                playerId = 1;
-                break;
+        int keyValue = v.getId();
 
-            case R.id.cap_player_3:
-                playerId = 2;
-                break;
-
-            case R.id.cap_player_4:
-                playerId = 3;
-                break;
-
-            case R.id.player_1:
-                playerId = 4;
-                break;
-            case R.id.player_2:
-                playerId = 5;
-                break;
-            case R.id.player_3:
-                playerId = 6;
-                break;
-            case R.id.player_4:
-                playerId = 7;
-                break;
-        };
-
+        playerId = controlClicked.get(keyValue);
 
         if (playerId < game.getPlayerCount()){
             //a caption has been clicked so we want to stick
@@ -170,7 +155,6 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
                     dealer.dealCard(player);
                 }
             }
-
         }
         setScores();
         getNextPlayer();
@@ -178,6 +162,7 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
             Player winner = game.getFinalScores();
             if (winner != null){
             Log.d("Card Game", winner.getPlayerName()+" has won!");
+                Toast.makeText(getApplicationContext(),winner.getPlayerName()+" has won!",Toast.LENGTH_LONG).show();
             //toast to say who has won?
             }
             else
@@ -211,8 +196,21 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
             String controlToFind = "p"+String.valueOf(i+1)+"cap";
             Object thisControl = getComponentByTag(controlToFind);
             if (thisControl != null && thisControl instanceof TextView){
-                if (i == turn){((TextView) thisControl).setTypeface(null, Typeface.BOLD);}
-                else {((TextView) thisControl).setTypeface(null, Typeface.NORMAL);}
+                if (i == turn){
+                    ((TextView) thisControl).setTypeface(null, Typeface.BOLD);
+                }
+                else {
+                    ((TextView) thisControl).setTypeface(null, Typeface.NORMAL);
+                }
+
+                if (player.getPlayerBust()){
+
+                    ((TextView) thisControl).setTextColor(Color.RED);
+                }
+                else
+                {
+                    ((TextView) thisControl).setTextColor(Color.BLACK);
+                }
                 ((TextView) thisControl).setText(captionToSet);
 
             }
@@ -248,9 +246,11 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
             setCardImages(player,i+1);
             int score = game.getScore(player);
             String captionToSet = String.valueOf(score);
-            if (score > 21){
+            if (score > 21 && !player.getPlayerBust()){
                 player.setPlayerBust(true);
                 Log.d("Card game", player.getPlayerName()+" is bust");
+                Toast.makeText(getApplicationContext(),player.getPlayerName()+" has gone bust!",Toast.LENGTH_LONG).show();
+
             }
 
             String controlToFind = "p"+String.valueOf(i+1)+"score";
@@ -316,14 +316,13 @@ public class PlayGame extends AppCompatActivity implements View.OnClickListener 
         }
         if (!playerFound){
                 Log.d("Card Game", "Game is finished");
-                setPlayerCaptions();
                 gameOver = true;
         }
         else
             {
                 Log.d("Card Game", "Active Player is "+ game.getPlayerNameByPosition(turn));
-                setPlayerCaptions();
             }
+        setPlayerCaptions();
 
     }
 

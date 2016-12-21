@@ -17,21 +17,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/p1image_4"
             android:tag="p1_4"
-            android:layout_marginRight="75dp" />
+            android:layout_marginRight="90dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/p1image_3"
             android:tag="p1_3"
-            android:layout_marginRight="50dp" />
+            android:layout_marginRight="60dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/p1image_2"
             android:tag="p1_2"
-            android:layout_marginRight="25dp" />
+            android:layout_marginRight="30dp" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
             android:layout_height="190dp"
             android:id="@+id/p4image4"
             android:tag="p4_4"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="60dp"
             android:contentDescription="@string/none"
             android:layout_alignTop="@+id/p4image1" />
         <ImageView
@@ -100,7 +100,7 @@
             android:layout_height="190dp"
             android:id="@+id/p4image3"
             android:tag="p4_3"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:contentDescription="@string/none"
             android:layout_alignTop="@+id/p4image1" />
         <ImageView
@@ -108,7 +108,7 @@
             android:layout_height="190dp"
             android:id="@+id/p4image2"
             android:tag="p4_2"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:contentDescription="@string/none"
             android:layout_alignTop="@+id/p4image1" />
         <ImageView
@@ -134,7 +134,7 @@
             android:layout_height="190dp"
             android:id="@+id/p2image4"
             android:tag="p2_4"
-            android:layout_marginBottom="75dp"
+            android:layout_marginBottom="60dp"
             android:layout_alignBottom="@+id/p2image1" />
 
         <ImageView
@@ -142,7 +142,7 @@
             android:layout_height="190dp"
             android:id="@+id/p2image3"
             android:tag="p2_3"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="40dp"
             android:layout_alignBottom="@+id/p2image1" />
 
         <ImageView
@@ -150,7 +150,7 @@
             android:layout_height="190dp"
             android:id="@+id/p2image2"
             android:tag="p2_2"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="20dp"
             android:layout_alignBottom="@+id/p2image1" />
 
         <ImageView
@@ -180,7 +180,6 @@
             android:textStyle="bold"
             android:layout_alignParentTop="false"
             android:layout_alignParentBottom="false"
-            android:layout_alignLeft="@+id/score_4"
             android:layout_centerVertical="true" />
 
         <TextView
@@ -192,9 +191,11 @@
             android:tag="p4score"
             android:layout_alignParentBottom="false"
             android:layout_alignParentRight="false"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentLeft="false"
             android:layout_marginLeft="10dp"
-            android:layout_below="@+id/cap_player_4" />
+            android:layout_below="@+id/cap_player_4"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@+id/cap_player_4" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -238,8 +239,7 @@
             android:id="@+id/score_3"
             android:tag="p3score"
             android:layout_alignParentBottom="true"
-            android:layout_centerVertical="true"
-            android:layout_alignRight="@+id/cap_player_3" />
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"

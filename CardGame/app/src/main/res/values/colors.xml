@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#4359a0</color>
     <color name="colorAccent">#ff4081</color>
     <color name="RED">#f10202</color>
+    <color name="BLACK">#101010</color>
     <color name="card_game_list_view_text">#bbffbb</color>
     <color name="card_game_list_view_background">#144628</color>
 </resources>
